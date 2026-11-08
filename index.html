@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gemelo Digital 3D — Simulación Termodinámica y CFD | UDES</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- HUD Overlay Científico / Académico -->
+  <div id="hud">
+    <div class="hud-title">🖥️ GEMELO DIGITAL — SALA DE SERVIDORES</div>
+    <div class="hud-sub" style="text-align: center; color: #00d5ff; font-size: 8.5px; margin-bottom: 8px; letter-spacing: 0.8px;">
+      UNIVERSIDAD DE SANTANDER · IA &amp; CIENCIAS DE LA COMPUTACIÓN
+    </div>
+
+    <div class="hud-section">
+      <span class="hud-label">Dominio espacial (Integral Triple)</span>
+      <span class="hud-value">Ω: [0,10] × [0,15] × [0,3] m</span>
+      <span class="hud-sub">Vol = ∭<sub>Ω</sub> dV = 450 m³</span>
+    </div>
+
+    <div class="hud-divider"></div>
+
+    <div class="hud-section">
+      <span class="hud-label">Función Térmica T(x,y,z)</span>
+      <span class="hud-value">T(x,y,z) = 20 + z²</span>
+      <span class="hud-sub">Rango: 20°C (z=0 suelo) → 29°C (z=3 techo)</span>
+    </div>
+
+    <div class="hud-divider"></div>
+
+    <div class="hud-section">
+      <span class="hud-label">Teorema del Valor Medio</span>
+      <span class="hud-value hud-highlight">T̄ = 23°C</span>
+      <span class="hud-sub">T̄ = (1/450)∭<sub>Ω</sub> T(x,y,z) dV</span>
+    </div>
+
+    <div class="hud-divider"></div>
+
+    <div class="hud-section">
+      <span class="hud-label">Campo Vectorial F(x,y,z)</span>
+      <span class="hud-value">F = (0.5x, 0.2y, 1.5 + z)</span>
+      <span class="hud-sub">∇·F = ∂(0.5x)/∂x + ∂(0.2y)/∂y + ∂(1.5+z)/∂z</span>
+    </div>
+
+    <div class="hud-divider"></div>
+
+    <div class="hud-section">
+      <span class="hud-label">Divergencia (Expansión del flujo)</span>
+      <span class="hud-value hud-alert">Div F = 1.7</span>
+      <span class="hud-sub">Flujo neto expansivo hacia extractores de techo</span>
+    </div>
+
+    <div class="hud-divider"></div>
+
+    <div id="hud-live">
+      <span class="hud-label">Ciclo Térmico / HVAC</span>
+      <span class="hud-value hud-highlight" id="particle-count">—</span>
+    </div>
+
+    <div class="hud-section" style="margin-top: 5px;">
+      <span class="hud-label">Dinámica de Fluidos (CFD)</span>
+      <span class="hud-value" id="cfd-streamlines-count" style="font-size: 10.5px; color: #48cae4;">
+        600 Streamlines (Inactivas)
+      </span>
+    </div>
+  </div>
+
+  <!-- Controles de cámara e interacción para presentación -->
+  <div id="controls-hint">
+    🖱️ Click + Arrastrar = Orbitar &nbsp;|&nbsp; Scroll = Zoom &nbsp;|&nbsp; Click Derecho = Paneo
+  </div>
+
+  <!-- Panel de Sliders de Simulación -->
+  <div id="sim-controls">
+    <div class="sim-title">⚙️ PARÁMETROS DE SIMULACIÓN</div>
+
+    <div class="sim-row">
+      <label for="slider-flow">
+        <span class="sim-icon">💨</span> Velocidad de Flujo (CFD)
+        <span class="sim-badge" id="badge-flow">1.0×</span>
+      </label>
+      <input
+        type="range" id="slider-flow"
+        min="0.2" max="3.0" step="0.05" value="1.0"
+      />
+      <div class="sim-track-labels"><span>Laminar</span><span>Turbulento</span></div>
+    </div>
+
+    <div class="sim-row">
+      <label for="slider-thermal">
+        <span class="sim-icon">🌡️</span> Carga Algorítmica (Térmica)
+        <span class="sim-badge" id="badge-thermal">1.0×</span>
+      </label>
+      <input
+        type="range" id="slider-thermal"
+        min="0.2" max="2.5" step="0.05" value="1.0"
+      />
+      <div class="sim-track-labels"><span>Baja</span><span>Estrés IA</span></div>
+    </div>
+  </div>
+
+  <canvas id="canvas"></canvas>
+
+  <!-- Three.js y OrbitControls vía CDN oficial (ES Modules) -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+    }
+  }
+  </script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>

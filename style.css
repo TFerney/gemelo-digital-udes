@@ -1,0 +1,247 @@
+/* ============================================================
+   Gemelo Digital — Sala de Servidores
+   Estilos globales y HUD
+   ============================================================ */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #010203;
+  font-family: 'Courier New', Courier, monospace;
+  color-scheme: dark;
+}
+
+#canvas {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+}
+
+/* ── HUD Panel ── */
+#hud {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  width: 316px;
+  background: rgba(1, 4, 12, 0.90);
+  border: 1px solid rgba(0, 160, 240, 0.28);
+  border-radius: 7px;
+  padding: 14px 16px;
+  color: #b8d8f0;
+  font-size: 11px;
+  line-height: 1.65;
+  backdrop-filter: blur(10px);
+  z-index: 100;
+  box-shadow:
+    0 0 32px rgba(0, 120, 220, 0.12),
+    0 2px 8px rgba(0,0,0,0.6),
+    inset 0 0 60px rgba(0,0,0,0.5);
+}
+
+.hud-title {
+  font-size: 11.5px;
+  font-weight: bold;
+  color: #00cfee;
+  letter-spacing: 1.2px;
+  text-align: center;
+  margin-bottom: 10px;
+  text-shadow: 0 0 12px rgba(0,200,240,0.4);
+  border-bottom: 1px solid rgba(0,160,220,0.15);
+  padding-bottom: 8px;
+}
+
+.hud-section {
+  display: flex;
+  flex-direction: column;
+  margin: 6px 0;
+}
+
+.hud-label {
+  color: #6ab8d8;
+  font-size: 9.5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.85;
+}
+
+.hud-value {
+  color: #ddeeff;
+  font-size: 11.5px;
+  font-weight: bold;
+  margin-top: 1px;
+  letter-spacing: 0.3px;
+}
+
+.hud-sub {
+  color: #4a7090;
+  font-size: 9.5px;
+  margin-top: 2px;
+  opacity: 0.9;
+}
+
+.hud-highlight {
+  color: #00ee88;
+  text-shadow: 0 0 10px rgba(0,220,130,0.35);
+  font-size: 14.5px;
+}
+
+.hud-alert {
+  color: #ee8800;
+  text-shadow: 0 0 10px rgba(240,120,0,0.30);
+  font-size: 13.5px;
+}
+
+.hud-divider {
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0,140,200,0.22), transparent);
+  margin: 7px 0;
+}
+
+#hud-live {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 4px;
+}
+
+/* ── Controles hint ── */
+#controls-hint {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(150, 200, 255, 0.55);
+  font-size: 11px;
+  font-family: 'Courier New', monospace;
+  pointer-events: none;
+  z-index: 100;
+  letter-spacing: 0.5px;
+}
+
+/* ── Panel de Sliders de Simulación ── */
+#sim-controls {
+  position: fixed;
+  bottom: 48px;
+  right: 16px;
+  width: 270px;
+  background: rgba(0, 8, 20, 0.88);
+  border: 1px solid rgba(0, 200, 180, 0.3);
+  border-radius: 8px;
+  padding: 14px 16px 12px;
+  color: #c8f0ee;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 11px;
+  backdrop-filter: blur(8px);
+  z-index: 100;
+  box-shadow: 0 0 20px rgba(0, 180, 160, 0.15), inset 0 0 40px rgba(0,0,0,0.6);
+}
+
+.sim-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #00e5cc;
+  letter-spacing: 1px;
+  text-align: center;
+  margin-bottom: 12px;
+  text-shadow: 0 0 8px #00e5cc66;
+}
+
+.sim-row {
+  margin-bottom: 14px;
+}
+
+.sim-row label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 5px;
+  color: #7ee8df;
+  font-size: 10.5px;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+}
+
+.sim-icon {
+  font-size: 13px;
+}
+
+.sim-badge {
+  margin-left: auto;
+  background: rgba(0, 220, 200, 0.12);
+  border: 1px solid rgba(0, 220, 200, 0.3);
+  border-radius: 4px;
+  padding: 1px 6px;
+  color: #00ffee;
+  font-size: 10px;
+  font-weight: bold;
+  min-width: 36px;
+  text-align: center;
+}
+
+/* Slider personalizado */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, #00ccaa, #004433);
+  outline: none;
+  cursor: pointer;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00ffee;
+  box-shadow: 0 0 6px #00ffee99;
+  cursor: pointer;
+  transition: transform 0.1s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.25);
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #00ffee;
+  box-shadow: 0 0 6px #00ffee99;
+  border: none;
+  cursor: pointer;
+}
+
+/* Slider térmico: color rojo/naranja */
+#slider-thermal {
+  background: linear-gradient(to right, #004466, #ff4400);
+}
+
+#slider-thermal::-webkit-slider-thumb {
+  background: #ff8844;
+  box-shadow: 0 0 6px #ff884499;
+}
+
+#slider-thermal::-moz-range-thumb {
+  background: #ff8844;
+  box-shadow: 0 0 6px #ff884499;
+}
+
+.sim-track-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3px;
+  color: #3a6060;
+  font-size: 9px;
+}
