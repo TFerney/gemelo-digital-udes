@@ -1,7 +1,4 @@
-# 🖥️ Gemelo Digital 3D — Sala de Servidores & Simulación CFD
 
-Proyecto de Grado / Symposium en **Ingeniería en Ciencias de la Computación e Inteligencia Artificial**  
-**Universidad de Santander (UDES)**
 
 Simulación interactiva 3D basada en **Three.js r165** que modela un gemelo digital de una sala de servidores de alta densidad con renderizado PBR fotorrealista (Dark/Cyberpunk Elegante), máquina de estados termodinámica y dinámica de fluidos computacional (CFD) demostrativa de cálculo multivariable.
 
